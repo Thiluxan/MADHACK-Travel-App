@@ -33,12 +33,12 @@ class _HomeState extends State<Home> {
                 final DocumentSnapshot documentSnapshot =
                     streamSnapshot.data!.docs[index];
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (context) => Destination(
-                            documentSnapshot['title'],
-                            documentSnapshot['image'],
-                            documentSnapshot['description'])));
+                  onTap: (){
+                    Navigator.push(context, PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 900),
+                      pageBuilder: (_, __, ___) => Destination(documentSnapshot['title'], documentSnapshot['image'], documentSnapshot['description']),
+                      settings: RouteSettings(arguments: documentSnapshot)
+                    ));
                   },
                   child: Card(
                     child: Padding(
